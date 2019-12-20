@@ -48,10 +48,8 @@ public class WorkDirectoryStatisticsBuildFeature extends BuildFeature {
 
     @NotNull
     @Override
-    public String describeParameters(@NotNull final Map<String, String> params) { // TODO: describe parameters
-        StringBuilder result = new StringBuilder();
-        result.append("TBD...");
-        return result.toString();
+    public String describeParameters(@NotNull final Map<String, String> params) {
+        return ""; // No settings yet!
     }
 
     @Override

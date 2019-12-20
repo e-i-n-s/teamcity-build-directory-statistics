@@ -1,5 +1,6 @@
 package ch.mstuderus.workdirectorystatistics;
 
+import com.intellij.openapi.diagnostic.Logger;
 import jetbrains.buildServer.controllers.BuildDataExtensionUtil;
 import jetbrains.buildServer.serverSide.SBuild;
 import jetbrains.buildServer.serverSide.SBuildServer;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.util.Map;
 
 public class WorkDirectoryStatisticsResultTab extends ViewLogTab implements CustomTab {
+    private static final Logger LOG = Logger.getInstance(WorkDirectoryStatisticsResultTab.class.getName());
     public static final String JSON = ".teamcity/work-directory-statistics/files.json";
 
     public WorkDirectoryStatisticsResultTab(
@@ -59,8 +61,8 @@ public class WorkDirectoryStatisticsResultTab extends ViewLogTab implements Cust
             try {
                 map.put("data",
                         StringEscapeUtils.escapeEcmaScript(IOUtils.toString(getJsonFile(sBuild).getInputStream())));
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException error) {
+                LOG.error(error);
             }
         }
     }
