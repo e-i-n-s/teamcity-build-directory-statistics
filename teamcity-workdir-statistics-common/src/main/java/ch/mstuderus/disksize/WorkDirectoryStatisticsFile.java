@@ -13,10 +13,6 @@ public class WorkDirectoryStatisticsFile {
         this.path = path;
     }
 
-    public long getBytes() {
-        return bytes;
-    }
-
     public void setBytes(long bytes) {
         this.bytes = bytes;
     }

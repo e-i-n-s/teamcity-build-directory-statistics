@@ -57,7 +57,8 @@
                             <executable>npm</executable>
                             <arguments>
                                 <argument>install</argument>
-                                <argument>datatables</argument>
+                                <argument>datatables.net-dt</argument>
+                                <argument>datatables.net-plugins</argument>
                                 <argument>--prefix</argument>
                                 <argument>
                                     ${project.basedir}/../teamcity-workdir-statistics-server/src/main/resources/buildServerResources/
