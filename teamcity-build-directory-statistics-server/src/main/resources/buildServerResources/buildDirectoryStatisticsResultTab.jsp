@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css"
       href="${teamcityPluginResourcesPath}node_modules/datatables.net-dt/css/jquery.dataTables.css"/>
 
-<div id="chart"></div>
+<div id="chart" style="width: 100%; margin: 0"></div>
 
 <table id="files" class="display" style="width:100%">
     <thead>
