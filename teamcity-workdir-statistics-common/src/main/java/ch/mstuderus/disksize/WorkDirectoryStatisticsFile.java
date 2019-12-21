@@ -17,7 +17,6 @@ public class WorkDirectoryStatisticsFile {
         this.bytes = bytes;
     }
 
-
     public WorkDirectoryStatisticsFile(String path, long bytes) {
         this.path = path;
         this.bytes = bytes;

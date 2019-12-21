@@ -10,30 +10,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static ch.mstuderus.disksize.WorkDirectoryConstants.PLUGIN_CODE;
+import static ch.mstuderus.disksize.WorkDirectoryConstants.PLUGIN_NAME_LONG;
+
 public class WorkDirectoryStatisticsBuildFeature extends BuildFeature {
-    public static final String FEATURE_TYPE = "work-directory-statistics-plugin";
-    public static final String FEATURE_NAME = "Work Directory Statistics";
-    private final String myEditUrl;
+    public static final String FEATURE_SETTINGS = "workDirectoryStatisticsSettings.jsp";
+    private final String featureSettingsUrl;
 
     public WorkDirectoryStatisticsBuildFeature(@NotNull final PluginDescriptor descriptor) {
-        myEditUrl = descriptor.getPluginResourcesPath("workDirectoryStatisticsSettings.jsp");
+        featureSettingsUrl = descriptor.getPluginResourcesPath(FEATURE_SETTINGS);
     }
 
     @NotNull
     @Override
     public String getType() {
-        return FEATURE_TYPE;
+        return PLUGIN_CODE;
     }
 
     @NotNull
     @Override
     public String getDisplayName() {
-        return FEATURE_NAME;
+        return PLUGIN_NAME_LONG;
     }
 
     @Override
     public String getEditParametersUrl() {
-        return myEditUrl;
+        return featureSettingsUrl;
     }
 
     @Override

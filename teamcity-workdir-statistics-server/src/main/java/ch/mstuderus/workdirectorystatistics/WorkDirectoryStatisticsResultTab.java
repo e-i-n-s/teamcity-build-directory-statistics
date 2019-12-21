@@ -18,33 +18,39 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Map;
 
+import static ch.mstuderus.disksize.WorkDirectoryConstants.*;
+
 public class WorkDirectoryStatisticsResultTab extends ViewLogTab implements CustomTab {
     private static final Logger LOG = Logger.getInstance(WorkDirectoryStatisticsResultTab.class.getName());
-    public static final String JSON = ".teamcity/work-directory-statistics/files.json";
+    private static final String BUILD_TAB = "workDirectoryStatisticsResultTab.jsp";
 
     public WorkDirectoryStatisticsResultTab(
             @NotNull final PagePlaces pagePlaces,
             @NotNull final SBuildServer server,
             @NotNull PluginDescriptor descriptor) {
-        super("Work Directory Statistics", "", pagePlaces, server);
-        setIncludeUrl(descriptor.getPluginResourcesPath("workDirectoryStatisticsResultTab.jsp"));
+        super(PLUGIN_TITLE, PLUGIN_CODE, pagePlaces, server);
+        setIncludeUrl(descriptor.getPluginResourcesPath(BUILD_TAB));
     }
 
     private BuildArtifact getJsonFile(SBuild sBuild) {
         if (!isJsonFileAvailable(sBuild)) {
             throw new RuntimeException("Json file not available");
         }
-        return sBuild.getArtifacts(BuildArtifactsViewMode.VIEW_ALL).findArtifact(JSON).getArtifact();
+        return sBuild.getArtifacts(BuildArtifactsViewMode.VIEW_ALL)
+                .findArtifact(JSON_FILES)
+                .getArtifact();
     }
 
     private boolean isJsonFileAvailable(SBuild sBuild) {
-        return sBuild.getArtifacts(BuildArtifactsViewMode.VIEW_ALL).findArtifact(JSON).isAvailable();
+        return sBuild.getArtifacts(BuildArtifactsViewMode.VIEW_ALL)
+                .findArtifact(JSON_FILES)
+                .isAccessible();
     }
 
     @Override
     public boolean isAvailable(@NotNull final HttpServletRequest request) {
         final SBuild build = BuildDataExtensionUtil.retrieveBuild(request, myServer);
-        return build.getBuildFeaturesOfType(WorkDirectoryStatisticsBuildFeature.FEATURE_TYPE).size() > 0
+        return build.getBuildFeaturesOfType(PLUGIN_CODE).size() > 0
                 && isJsonFileAvailable(build)
                 && super.isAvailable(request);
     }
