@@ -5,7 +5,7 @@
         <name>@Id@</name>
         <display-name>@DisplayName@</display-name>
         <version>@Version@</version>
-        <description>@Description@</description> <!-- TODO: Add description -->
+        <description>@Description@</description>
         <download-url>@VendorURL@</download-url>
         <vendor>
             <name>@VendorName@</name>

@@ -1,6 +1,6 @@
-# TeamCity Plugin: Work Directory Statistics
+# TeamCity Plugin: Build Directory Statistics
 
-[![Build Status](https://travis-ci.com/e-i-n-s/teamcity-workdir-statistics.svg?branch=master)](https://travis-ci.com/e-i-n-s/teamcity-workdir-statistics)
+[![Build Status](https://travis-ci.com/e-i-n-s/teamcity-build-directory-statistics.svg?branch=master)](https://travis-ci.com/e-i-n-s/teamcity-build-directory-statistics)
 
 ## Description
 This TeamCity plugin allows you to analyse the checkout directory of your build configurations.

@@ -1,4 +1,5 @@
 .idea/
 target/
 build/target/
-teamcity-workdir-statistics-*/target
+teamcity-build-directory-statistics-*/target
+*.iml

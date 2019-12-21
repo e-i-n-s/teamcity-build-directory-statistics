@@ -7,7 +7,7 @@
     </formats>
     <files>
         <file>
-            <source>../teamcity-workdir-statistics-agent/teamcity-plugin.xml</source>
+            <source>../teamcity-build-directory-statistics-agent/teamcity-plugin.xml</source>
             <outputDirectory>/</outputDirectory>
         </file>
     </files>
@@ -15,8 +15,8 @@
         <moduleSet>
             <useAllReactorProjects>true</useAllReactorProjects>
             <includes>
-                <include>ch.mstuderus:teamcity-workdir-statistics-agent</include>
-                <include>ch.mstuderus:teamcity-workdir-statistics-common</include>
+                <include>ch.mstuderus:teamcity-build-directory-statistics-agent</include>
+                <include>ch.mstuderus:teamcity-build-directory-statistics-common</include>
             </includes>
             <binaries>
                 <outputDirectory>lib</outputDirectory>

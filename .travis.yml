@@ -8,7 +8,7 @@ addons:
     token:
       secure: "HHWBCAcum4114t+c2MizXYwQvduNXhaFVFwx1tr34Ee95AHIS9nb1IbErOYJ8iQ/pUmPZUq5GcgfTLWCsqbKZZspVHw8NIKgclF+cuEdL/0vzk+gNK1kUi2/k/S/Vrp+O5KoRC/Hus/z3AjGM2Fu/6IrLmr72RdV3jVaPsZx3mC0MsaMzMurfPRUyqj5dn7E5bJthgOnUuRrDO5skkUtjPmnSpWa6ts8IXl0+kpHSdf/cd8nt/znbulcs909w7V0TMV0n7o0QqDWGGuO33o2zSprzWuo9N6bDuxJeQ1EwvfKLU4livfpV8/R0SHo8VBvuUQjeG5ngfGGqXp7Spvs+qxoM/rT3COXq4s/HT8gbw/hqHUVXbLImPuUbleitfouvJQI2OFL22K/tdL5FSk/45i8bU9lUAxUgIjelSE2oHpXDZXX7BX4eBvcjidXsIvnC7UenQvQ1mqdqdYVEQ5Ccigsky4FgOrkox+1pkewAjmSK8bSzRQrAGT4oaV7P3ICsr9itEPi5RtI7fiWDaVNcpeWU3AET2nyUOqKumCHofRNuD4B3+yqxlZVt1xO/Mac0nA62GCiIy+P63LBTwpxZ611Dlh/PEzVqvaZTsiYYZa+Ggm0gTcm7SuCPXFJqVLZVyPjCEP3mNqHcfoS5JrBnaXXozbi7uRYiB9DJpbmpRQ="
 script:
-  - mvn package clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=e-i-n-s_teamcity-workdir-statistics
+  - mvn clean package org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=e-i-n-s_teamcity-build-directory-statistics
 cache:
   directories:
     - .autoconf

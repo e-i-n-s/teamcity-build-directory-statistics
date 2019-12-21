@@ -3,38 +3,46 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>teamcity-workdir-statistics</artifactId>
+        <artifactId>teamcity-build-directory-statistics</artifactId>
         <groupId>ch.mstuderus</groupId>
         <version>0.1-SNAPSHOT</version>
     </parent>
     <artifactId>build</artifactId>
     <packaging>pom</packaging>
     <properties>
-        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
-        <teamcity.teamcity-workdir-statistics.plugin.version>snapshot-${maven.build.timestamp}
-        </teamcity.teamcity-workdir-statistics.plugin.version>
-        <teamcity.teamcity-workdir-statistics.plugin.vendorName>Marco Studerus
-        </teamcity.teamcity-workdir-statistics.plugin.vendorName>
-        <teamcity.teamcity-workdir-statistics.plugin.vendorUrl>https://github.com/e-i-n-s
-        </teamcity.teamcity-workdir-statistics.plugin.vendorUrl> <!-- TODO: Add URL -->
-        <teamcity.teamcity-workdir-statistics.plugin.description></teamcity.teamcity-workdir-statistics.plugin.description> <!-- TODO: Add description -->
-        <teamcity.teamcity-workdir-statistics.plugin.displayName>Work Directory Statistics
-        </teamcity.teamcity-workdir-statistics.plugin.displayName>
+        <maven.build.timestamp.format>
+            yyyyMMddHHmmss
+        </maven.build.timestamp.format>
+        <teamcity.teamcity-build-directory-statistics.plugin.version>
+            snapshot-${maven.build.timestamp}
+        </teamcity.teamcity-build-directory-statistics.plugin.version>
+        <teamcity.teamcity-build-directory-statistics.plugin.vendorName>
+            Marco Studerus
+        </teamcity.teamcity-build-directory-statistics.plugin.vendorName>
+        <teamcity.teamcity-build-directory-statistics.plugin.vendorUrl>
+            https://github.com/e-i-n-s
+        </teamcity.teamcity-build-directory-statistics.plugin.vendorUrl>
+        <teamcity.teamcity-build-directory-statistics.plugin.description>
+            A plugin to analyse the build directory of a executed build without accessing the build agent.
+        </teamcity.teamcity-build-directory-statistics.plugin.description>
+        <teamcity.teamcity-build-directory-statistics.plugin.displayName>
+            Build Directory Statistics
+        </teamcity.teamcity-build-directory-statistics.plugin.displayName>
     </properties>
     <dependencies>
         <dependency>
             <groupId>ch.mstuderus</groupId>
-            <artifactId>teamcity-workdir-statistics-agent</artifactId>
+            <artifactId>teamcity-build-directory-statistics-agent</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>ch.mstuderus</groupId>
-            <artifactId>teamcity-workdir-statistics-common</artifactId>
+            <artifactId>teamcity-build-directory-statistics-common</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>ch.mstuderus</groupId>
-            <artifactId>teamcity-workdir-statistics-server</artifactId>
+            <artifactId>teamcity-build-directory-statistics-server</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
@@ -58,19 +66,19 @@
                     <replacements>
                         <replacement>
                             <token>@Version@</token>
-                            <value>${teamcity.teamcity-workdir-statistics.plugin.version}</value>
+                            <value>${teamcity.teamcity-build-directory-statistics.plugin.version}</value>
                         </replacement>
                         <replacement>
                             <token>@VendorName@</token>
-                            <value>${teamcity.teamcity-workdir-statistics.plugin.vendorName}</value>
+                            <value>${teamcity.teamcity-build-directory-statistics.plugin.vendorName}</value>
                         </replacement>
                         <replacement>
                             <token>@VendorURL@</token>
-                            <value>${teamcity.teamcity-workdir-statistics.plugin.vendorUrl}</value>
+                            <value>${teamcity.teamcity-build-directory-statistics.plugin.vendorUrl}</value>
                         </replacement>
                         <replacement>
                             <token>@Description@</token>
-                            <value>${teamcity.teamcity-workdir-statistics.plugin.description}</value>
+                            <value>${teamcity.teamcity-build-directory-statistics.plugin.description}</value>
                         </replacement>
                         <replacement>
                             <token>@Id@</token>
@@ -78,7 +86,7 @@
                         </replacement>
                         <replacement>
                             <token>@DisplayName@</token>
-                            <value>${teamcity.teamcity-workdir-statistics.plugin.displayName}</value>
+                            <value>${teamcity.teamcity-build-directory-statistics.plugin.displayName}</value>
                         </replacement>
                     </replacements>
                 </configuration>
@@ -94,7 +102,7 @@
                             <goal>single</goal>
                         </goals>
                         <configuration>
-                            <finalName>teamcity-workdir-statistics-agent</finalName>
+                            <finalName>teamcity-build-directory-statistics-agent</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                             <descriptors>
                                 <descriptor>plugin-agent-assembly.xml</descriptor>
@@ -108,7 +116,7 @@
                             <goal>single</goal>
                         </goals>
                         <configuration>
-                            <finalName>teamcity-workdir-statistics</finalName>
+                            <finalName>teamcity-build-directory-statistics</finalName>
                             <outputDirectory>${project.parent.build.directory}</outputDirectory>
                             <appendAssemblyId>false</appendAssemblyId>
                             <descriptors>

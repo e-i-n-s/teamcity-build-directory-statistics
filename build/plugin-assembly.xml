@@ -11,7 +11,7 @@
             <outputDirectory>/</outputDirectory>
         </file>
         <file>
-            <source>target/teamcity-workdir-statistics-agent.zip</source>
+            <source>target/teamcity-build-directory-statistics-agent.zip</source>
             <outputDirectory>agent</outputDirectory>
         </file>
     </files>
@@ -19,8 +19,8 @@
         <moduleSet>
             <useAllReactorProjects>true</useAllReactorProjects>
             <includes>
-                <include>ch.mstuderus:teamcity-workdir-statistics-server</include>
-                <include>ch.mstuderus:teamcity-workdir-statistics-common</include>
+                <include>ch.mstuderus:teamcity-build-directory-statistics-server</include>
+                <include>ch.mstuderus:teamcity-build-directory-statistics-common</include>
             </includes>
             <binaries>
                 <outputDirectory>server</outputDirectory>

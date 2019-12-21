@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ch.mstuderus</groupId>
-    <artifactId>teamcity-workdir-statistics</artifactId>
+    <artifactId>teamcity-build-directory-statistics</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <properties>
@@ -24,16 +24,6 @@
         </pluginRepository>
     </pluginRepositories>
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.jetbrains.teamcity</groupId>
-                <artifactId>teamcity-sdk-maven-plugin</artifactId>
-                <version>0.4</version>
-                <configuration>
-                    <teamcityDir>/Users/studi/TeamCity</teamcityDir>
-                </configuration>
-            </plugin>
-        </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -41,16 +31,16 @@
                     <artifactId>teamcity-sdk-maven-plugin</artifactId>
                     <version>0.4</version>
                     <configuration>
-                        <teamcityDir>/Users/studi/TeamCity</teamcityDir>
+                        <teamcityDir>${env.TEAMCITY_SERVER}</teamcityDir>
                     </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
     <modules>
-        <module>teamcity-workdir-statistics-server</module>
-        <module>teamcity-workdir-statistics-agent</module>
-        <module>teamcity-workdir-statistics-common</module>
+        <module>teamcity-build-directory-statistics-server</module>
+        <module>teamcity-build-directory-statistics-agent</module>
+        <module>teamcity-build-directory-statistics-common</module>
         <module>build</module>
     </modules>
 </project>
