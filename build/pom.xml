@@ -23,7 +23,7 @@
             https://github.com/e-i-n-s
         </teamcity.teamcity-build-directory-statistics.plugin.vendorUrl>
         <teamcity.teamcity-build-directory-statistics.plugin.description>
-            A plugin to analyse the build directory of a executed build without accessing the build agent.
+            A plugin to analyse the build directory of an executed build without accessing the build agent.
         </teamcity.teamcity-build-directory-statistics.plugin.description>
         <teamcity.teamcity-build-directory-statistics.plugin.displayName>
             Build Directory Statistics
