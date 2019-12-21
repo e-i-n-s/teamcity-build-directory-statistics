@@ -5,6 +5,15 @@
     <formats>
         <format>zip</format>
     </formats>
+    <fileSets>
+        <fileSet>
+            <directory>../teamcity-build-directory-statistics-server/target/generated-resources</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+            <outputDirectory>licenses</outputDirectory>
+        </fileSet>
+    </fileSets>
     <files>
         <file>
             <source>target/teamcity-plugin.xml</source>

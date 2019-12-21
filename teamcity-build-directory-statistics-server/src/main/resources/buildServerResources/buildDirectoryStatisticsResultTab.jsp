@@ -1,14 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script type="text/javascript"
-        src="${teamcityPluginResourcesPath}node_modules/datatables.net/js/jquery.dataTables.js"></script>
-<script type="text/javascript"
-        src="${teamcityPluginResourcesPath}node_modules/datatables.net-dt/js/dataTables.dataTables.js"></script>
-<script type="text/javascript" src="${teamcityPluginResourcesPath}js/file-size.js"></script>
-<script type="text/javascript" src="${teamcityPluginResourcesPath}js/d3.v5.min.js"></script>
-<script type="text/javascript" src="${teamcityPluginResourcesPath}js/sunburst-chart.min.js"></script>
-<link rel="stylesheet" type="text/css"
-      href="${teamcityPluginResourcesPath}node_modules/datatables.net-dt/css/jquery.dataTables.css"/>
+<script type="text/javascript" src="${teamcityPluginResourcesPath}node_modules/datatables.net/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="${teamcityPluginResourcesPath}node_modules/datatables.net-dt/js/dataTables.dataTables.js"></script>
+<script type="text/javascript" src="${teamcityPluginResourcesPath}libs/datatables-plugins/file-size.js"></script>
+<script type="text/javascript" src="${teamcityPluginResourcesPath}libs/d3/d3.v5.min.js"></script>
+<script type="text/javascript" src="${teamcityPluginResourcesPath}libs/sunburst-chart/sunburst-chart.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${teamcityPluginResourcesPath}node_modules/datatables.net-dt/css/jquery.dataTables.css"/>
 
 <div id="chart" style="width: 100%; margin: 0"></div>
 
