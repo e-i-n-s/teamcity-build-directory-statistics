@@ -72,18 +72,17 @@ public class BuildDirectoryStatisticsPlugin extends AgentLifeCycleAdapter {
             logException(e, build.getBuildLogger());
         }
 
-        try {
-            File jsonFile = Paths.get(pluginBuildStorage.toString(), JSON_FILES_FILE_NAME).toFile();
+        File jsonFile = Paths.get(pluginBuildStorage.toString(), JSON_FILES_FILE_NAME).toFile();
 
-            GZIPOutputStream gzipOutputStream = new GZIPOutputStream(new FileOutputStream(jsonFile));
+        try (GZIPOutputStream gzipOutputStream = new GZIPOutputStream(new FileOutputStream(jsonFile))) {
             Writer writer = new BufferedWriter(new OutputStreamWriter(gzipOutputStream, StandardCharsets.UTF_8));
-
             new Gson().toJson(fileList, writer);
-            writer.close();
-            artifactsWatcher.addNewArtifactsPath(jsonFile.getPath() + " => " + JSON_FILES_DIRECTORY);
+
         } catch (IOException e) {
             logException(e, build.getBuildLogger());
         }
+
+        artifactsWatcher.addNewArtifactsPath(jsonFile.getPath() + " => " + JSON_FILES_DIRECTORY);
 
         build.getBuildLogger().message(String.format("Found %d file, total %.2f MB", count, size / 1024.0 / 1024.0));
         build.getBuildLogger().flush();
