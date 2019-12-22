@@ -1,13 +1,11 @@
 package ch.mstuderus.builddirectorystatistics;
 
 import jetbrains.buildServer.serverSide.BuildFeature;
-import jetbrains.buildServer.serverSide.InvalidProperty;
 import jetbrains.buildServer.serverSide.PropertiesProcessor;
 import jetbrains.buildServer.web.openapi.PluginDescriptor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import static ch.mstuderus.disksize.BuildDirectoryStatisticsConstants.PLUGIN_CODE;

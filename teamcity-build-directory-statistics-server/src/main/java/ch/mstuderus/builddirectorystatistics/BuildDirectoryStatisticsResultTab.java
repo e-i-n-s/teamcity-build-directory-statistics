@@ -55,7 +55,8 @@ public class BuildDirectoryStatisticsResultTab extends ViewLogTab implements Cus
     @Override
     public boolean isAvailable(@NotNull final HttpServletRequest request) {
         final SBuild build = BuildDataExtensionUtil.retrieveBuild(request, myServer);
-        return build.getBuildFeaturesOfType(PLUGIN_CODE).size() > 0
+        return build != null
+                && !build.getBuildFeaturesOfType(PLUGIN_CODE).isEmpty()
                 && isJsonFileAvailable(build)
                 && super.isAvailable(request);
     }

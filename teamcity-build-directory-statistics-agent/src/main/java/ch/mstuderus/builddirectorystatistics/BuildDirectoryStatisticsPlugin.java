@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import jetbrains.buildServer.agent.*;
 import jetbrains.buildServer.agent.artifacts.ArtifactsWatcher;
 import jetbrains.buildServer.util.EventDispatcher;
+import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -40,9 +41,6 @@ public class BuildDirectoryStatisticsPlugin extends AgentLifeCycleAdapter {
     public void beforeBuildFinish(@NotNull AgentRunningBuild build, @NotNull BuildFinishedStatus buildStatus) {
         build.getBuildLogger().activityStarted(PLUGIN_NAME_LONG, PLUGIN_CODE);
 
-        long size = 0;
-        long count = 0;
-
         Path buildDirectory = FileSystems.getDefault().getPath(build.getCheckoutDirectory().getAbsolutePath());
         Path pluginBuildStorage = Paths.get(
                 build.getAgentTempDirectory().getPath(),
@@ -63,9 +61,6 @@ public class BuildDirectoryStatisticsPlugin extends AgentLifeCycleAdapter {
                 if (!Files.isDirectory(path)) {
                     String relativePath = buildDirectory.toUri().relativize(path.toUri()).getPath();
                     fileList.add(new BuildDirectoryStatisticsFile(relativePath, Files.size(path)));
-
-                    count++;
-                    size += Files.size(path);
                 }
             }
         } catch (IOException e) {
@@ -74,17 +69,27 @@ public class BuildDirectoryStatisticsPlugin extends AgentLifeCycleAdapter {
 
         File jsonFile = Paths.get(pluginBuildStorage.toString(), JSON_FILES_FILE_NAME).toFile();
 
+        Writer writer = null;
         try (GZIPOutputStream gzipOutputStream = new GZIPOutputStream(new FileOutputStream(jsonFile))) {
-            Writer writer = new BufferedWriter(new OutputStreamWriter(gzipOutputStream, StandardCharsets.UTF_8));
+            writer = new BufferedWriter(new OutputStreamWriter(gzipOutputStream, StandardCharsets.UTF_8));
             new Gson().toJson(fileList, writer);
-
+            writer.close();
         } catch (IOException e) {
             logException(e, build.getBuildLogger());
+        } finally {
+            IOUtils.closeQuietly(writer);
         }
 
         artifactsWatcher.addNewArtifactsPath(jsonFile.getPath() + " => " + JSON_FILES_DIRECTORY);
 
-        build.getBuildLogger().message(String.format("Found %d file, total %.2f MB", count, size / 1024.0 / 1024.0));
+        long size = 0;
+        for (BuildDirectoryStatisticsFile file : fileList) {
+            size += file.getBytes();
+        }
+
+        build.getBuildLogger().message(
+                String.format("Found %d file, total %.2f MB", fileList.size(), size / 1024.0 / 1024.0)
+        );
         build.getBuildLogger().flush();
         build.getBuildLogger().activityFinished(PLUGIN_NAME_LONG, PLUGIN_CODE);
     }
