@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.zip.GZIPOutputStream;
 
 import static ch.mstuderus.disksize.BuildDirectoryStatisticsConstants.*;
@@ -56,8 +57,8 @@ public class BuildDirectoryStatisticsPlugin extends AgentLifeCycleAdapter {
 
         List<BuildDirectoryStatisticsFile> fileList = new ArrayList<>();
 
-        try {
-            for (Path path : Files.walk(buildDirectory).collect(Collectors.toCollection(ArrayList::new))) {
+        try (Stream<Path> stream = Files.walk(buildDirectory)) {
+            for (Path path : stream.collect(Collectors.toCollection(ArrayList::new))) {
                 if (!Files.isDirectory(path)) {
                     String relativePath = buildDirectory.toUri().relativize(path.toUri()).getPath();
                     fileList.add(new BuildDirectoryStatisticsFile(relativePath, Files.size(path)));
