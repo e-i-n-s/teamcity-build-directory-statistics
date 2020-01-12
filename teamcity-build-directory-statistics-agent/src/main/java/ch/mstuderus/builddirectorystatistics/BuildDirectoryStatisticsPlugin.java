@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -40,6 +41,11 @@ public class BuildDirectoryStatisticsPlugin extends AgentLifeCycleAdapter {
 
     @Override
     public void beforeBuildFinish(@NotNull AgentRunningBuild build, @NotNull BuildFinishedStatus buildStatus) {
+        Collection<AgentBuildFeature> features = build.getBuildFeaturesOfType(PLUGIN_CODE);
+        if (features.isEmpty()) {
+            return;
+        }
+
         build.getBuildLogger().activityStarted(PLUGIN_NAME_LONG, PLUGIN_CODE);
 
         Path buildDirectory = FileSystems.getDefault().getPath(build.getCheckoutDirectory().getAbsolutePath());
