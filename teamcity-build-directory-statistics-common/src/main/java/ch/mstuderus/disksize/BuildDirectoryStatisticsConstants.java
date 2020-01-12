@@ -7,4 +7,7 @@ public class BuildDirectoryStatisticsConstants {
     public static final String JSON_FILES_DIRECTORY = ".teamcity/" + PLUGIN_CODE + "/";
     public static final String JSON_FILES_FILE_NAME = "files.json.gzip";
     public static final String JSON_FILES = JSON_FILES_DIRECTORY + JSON_FILES_FILE_NAME;
+
+    private BuildDirectoryStatisticsConstants() {
+    }
 }
