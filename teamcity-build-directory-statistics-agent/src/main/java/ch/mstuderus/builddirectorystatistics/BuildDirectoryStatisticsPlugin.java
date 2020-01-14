@@ -6,6 +6,7 @@ import jetbrains.buildServer.agent.*;
 import jetbrains.buildServer.agent.artifacts.ArtifactsWatcher;
 import jetbrains.buildServer.util.EventDispatcher;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -37,6 +38,7 @@ public class BuildDirectoryStatisticsPlugin extends AgentLifeCycleAdapter {
     private void logException(Exception exception, BuildProgressLogger logger) {
         logger.warning("Exception:");
         logger.warning(exception.getMessage());
+        logger.message(ExceptionUtils.getStackTrace(exception));
     }
 
     @Override
@@ -65,9 +67,13 @@ public class BuildDirectoryStatisticsPlugin extends AgentLifeCycleAdapter {
 
         try (Stream<Path> stream = Files.walk(buildDirectory)) {
             for (Path path : stream.collect(Collectors.toCollection(ArrayList::new))) {
-                if (!path.toFile().isDirectory()) {
-                    String relativePath = buildDirectory.toUri().relativize(path.toUri()).getPath();
-                    fileList.add(new BuildDirectoryStatisticsFile(relativePath, Files.size(path)));
+                try {
+                    if (!path.toFile().isDirectory()) {
+                        String relativePath = buildDirectory.toUri().relativize(path.toUri()).getPath();
+                        fileList.add(new BuildDirectoryStatisticsFile(relativePath, Files.size(path)));
+                    }
+                } catch (Exception e) {
+                    logException(e, build.getBuildLogger());
                 }
             }
         } catch (IOException e) {
