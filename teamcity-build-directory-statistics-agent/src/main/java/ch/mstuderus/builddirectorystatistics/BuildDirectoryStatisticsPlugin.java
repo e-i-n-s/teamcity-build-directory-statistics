@@ -68,7 +68,7 @@ public class BuildDirectoryStatisticsPlugin extends AgentLifeCycleAdapter {
         try (Stream<Path> stream = Files.walk(buildDirectory)) {
             for (Path path : stream.collect(Collectors.toCollection(ArrayList::new))) {
                 try {
-                    if (!path.toFile().isDirectory()) {
+                    if (path.toFile().isFile() && !Files.isSymbolicLink(path)) {
                         String relativePath = buildDirectory.toUri().relativize(path.toUri()).getPath();
                         fileList.add(new BuildDirectoryStatisticsFile(relativePath, Files.size(path)));
                     }
